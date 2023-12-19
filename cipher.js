@@ -4,6 +4,8 @@
 
 const alphabetLower = "abcdefghijklmnopqrstuvwxyz";
 const alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// const number = "0123456789"
+// const specialCharacters = "[$&+,:;=?@#|'<>.-^*()%!]"
 
 
 
@@ -26,7 +28,8 @@ function letterRotation(letter, amountToShift) {
         alphabet = alphabetUpper;
     } else if (alphabetLower.includes(letter)) {
         alphabet = alphabetLower;
-    } else {
+    }
+    else {
         return letter // returns the character if it is not in alphabetUpper or alphabetLower. 
     }
 
@@ -68,20 +71,14 @@ function letterRotation(letter, amountToShift) {
     
 
     function cipher(string, amountToShift) {
-       // document.getElementById("input").value;
-        let userInput = string;
-        let stringOfLetters = userInput.split("");
+        let stringOfLetters = string.split("");
         let encodedPhrase = []
-        for(let i = 0; i < userInput.length; i++) {
+        for(let i = 0; i < string.length; i++) {
             encodedPhrase.push(letterRotation(stringOfLetters[i], amountToShift))
         }
         
         return encodedPhrase.join('')
         // let strEncoded = encodedPhrase.join('');
-        
-        // // console.log('This should hold the encoded string:', strEncoded)
-        // document.getElementById("output-area").value = strEncoded;
-        // console.log(strEncoded)
         }
 
 
@@ -93,18 +90,15 @@ function decode(string, amountToShift) {
                 decodedPhrase.push(letterRotation(stringOfLetters[i], -amountToShift))
             }
             return decodedPhrase.join('')
-            
-            // let strDecoded = decodedPhrase.join('')
-            // document.getElementById("output-area").value = strDecoded;
-            // 
-            // cipher.reverse(string)
         }; 
 
 
-
-document.getElementById("encode").addEventListener('click', function () {
-    const string = document.getElementById("input-area").value;
-    const amountToShift = parseInt(document.getElementById("amountToShift").value)
+document.addEventListener('DOMContentLoaded' , function () {
+        
+        
+    document.getElementById("encode").addEventListener('click', function () {
+        const string = document.getElementById("input-area").value;
+        const amountToShift = parseInt(document.getElementById("amountToShift").value)
         
         if(!isNaN(amountToShift)) {
             const encodedText = cipher(string, amountToShift)
@@ -112,25 +106,31 @@ document.getElementById("encode").addEventListener('click', function () {
             document.getElementById('output-area').value = encodedText
 
         }
+        
+        document.getElementById("decode").addEventListener('click', function() {
+            const string = document.getElementById("input-area").value;
+            const amountToShift = parseInt(document.getElementById("amountToShift").value)
+                
+                if(!isNaN(amountToShift)) {
+                    const decodedText = decode(string, amountToShift)
+         
+                    document.getElementById('output-area').value = decodedText
+        
+                }
+        
+        
+                })
 
 
         })
 
+    });
+
+// export {cipher, letterRotation, decode}
+
         
 
-document.getElementById("decode").addEventListener('click', function() {
-    const string = document.getElementById("input-area").value;
-    const amountToShift = parseInt(document.getElementById("amountToShift").value)
-        
-        if(!isNaN(amountToShift)) {
-            const decodedText = decode(string, amountToShift)
- 
-            document.getElementById('output-area').value = decodedText
 
-        }
-
-
-        })
 
 
 // console.log(letterRotation('a', 5))
