@@ -1,0 +1,1 @@
+console.log(letterRotation('a', 5))
