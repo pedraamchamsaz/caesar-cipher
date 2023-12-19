@@ -5,7 +5,16 @@
 const alphabetLower = "abcdefghijklmnopqrstuvwxyz";
 const alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-const inputArea = document.getElementById("inputArea").value;
+
+
+// const output = document.getElementById('output-area');
+// const string = document.getElementById("input-area").value; 
+// const amountToShift = document.getElementById("amountToShift").value;
+// // const encodeBtn = document.getElementById("encode").value;
+// // const decodeBtn = document.getElementById("decode").value;
+// const encodeClick = document.getElementById("encode").addEventListener("click", cipher());
+
+// document.getElementById("encode").addEventListener("click", cipher(string));
 
 
 
@@ -27,7 +36,7 @@ function letterRotation(letter, amountToShift) {
     // function has to identify the current index of the letter variable in the alphabet.
 
     let currentIndex = alphabet.indexOf(letter); 
-    console.log(currentIndex)
+   
 
     // we then need to apply the shift to the currentIndex
 
@@ -40,7 +49,7 @@ function letterRotation(letter, amountToShift) {
         return indexShifted
     }
         
-    console.log(indexShifted)
+
 
 
 
@@ -48,90 +57,86 @@ function letterRotation(letter, amountToShift) {
 
     }
 
-
+    // function onClick (event) {
+    //     const display = document.getElementById("output-area").value 
+    //     if(encodeClick) {
+    //         return cipher()
+    //     }
+        
+    //     console.log(display)
+    // }
+    
 
     function cipher(string, amountToShift) {
        // document.getElementById("input").value;
-        let stringOfLetters = string.split("");
+        let userInput = string;
+        let stringOfLetters = userInput.split("");
         let encodedPhrase = []
-        for(let i = 0; i < string.length; i++) {
+        for(let i = 0; i < userInput.length; i++) {
             encodedPhrase.push(letterRotation(stringOfLetters[i], amountToShift))
         }
         
         return encodedPhrase.join('')
+        // let strEncoded = encodedPhrase.join('');
         
+        // // console.log('This should hold the encoded string:', strEncoded)
+        // document.getElementById("output-area").value = strEncoded;
+        // console.log(strEncoded)
         }
 
 
-        function decode(string, amountToShift) {
-        
+function decode(string, amountToShift) {
+            
             let stringOfLetters = string.split("");
             let decodedPhrase = []
             for(let i = 0; i < string.length; i++) {
                 decodedPhrase.push(letterRotation(stringOfLetters[i], -amountToShift))
             }
-            
             return decodedPhrase.join('')
+            
+            // let strDecoded = decodedPhrase.join('')
+            // document.getElementById("output-area").value = strDecoded;
             // 
             // cipher.reverse(string)
         }; 
 
-console.log(letterRotation('a', 5))
-console.log(letterRotation('z', 5))
-
-console.log(cipher('anywordhere', 5))
-console.log(decode('25mxvnqcgdqd', -5))
 
 
+document.getElementById("encode").addEventListener('click', function () {
+    const string = document.getElementById("input-area").value;
+    const amountToShift = parseInt(document.getElementById("amountToShift").value)
+        
+        if(!isNaN(amountToShift)) {
+            const encodedText = cipher(string, amountToShift)
+
+            document.getElementById('output-area').value = encodedText
+
+        }
 
 
-// // Loop over each letter in the string, find that letter in the alphabet array and push the index of each letter
-// // in a new array
-
-// // Loop over the new array and add the input amount to each element in the array
-
-// // Loop over the new array, return 
-
-
-
-// console.log(alphabet.indexOf("a"))
-
-
-// // Get an array of letters from the alphabet. 
-// // We want take an input. Split the input into individual letters. 
-
-// // 
-
-// function toArr(letter, amountToShift) {
-// // splits into words
-//     // let newArrOfWords = s.split(" ");
-//     // let empty_arr = []
-//     // console.log(newArrOfWords)
-//     // for(let i = 0; i < newArrOfWords.length; i++) {
-//     //     // splits into letters
+        })
 
         
-//         //let arr = []
 
-//         let letterPosition = alphabet.indexOf(letter)
-
-//         let new_position = (letterPosition + amountToShift) /
-
-//         console.log(letterPosition)
-
-
-    
+document.getElementById("decode").addEventListener('click', function() {
+    const string = document.getElementById("input-area").value;
+    const amountToShift = parseInt(document.getElementById("amountToShift").value)
+        
+        if(!isNaN(amountToShift)) {
+            const decodedText = decode(string, amountToShift)
  
+            document.getElementById('output-area').value = decodedText
 
-// }
+        }
 
-// function cipher(phrase) {
-//     for (let i = 0; i < phrase.length; i++) {
-//         let arrayOfIndexes = []
-//         arrayOfIndexes.push(alphabet.forEach((phrase) => console.log(phras)))
-//         console.log(arrayOfIndexes)
-//         return arrayOfIndexes
-//     }
-// }
 
-// cipher("")
+        })
+
+
+// console.log(letterRotation('a', 5))
+// console.log(letterRotation('z', 5))
+
+// console.log(cipher('anywordhere', 5))
+// console.log(decode('25mxvnqcgdqd', -5))
+
+
